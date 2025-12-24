@@ -1,0 +1,11 @@
+maxblox/
+├── frontend/
+│   ├── index.html
+│   ├── register.html
+│   ├── script.js
+│   ├── style.css
+│   └── assets/
+│       ├── logo.png
+│       └── favicon.ico
+└── backend/
+    └── (Java файлы)

@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxBlox - Регистрация</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            color: #e0e0e0;
+            padding: 20px;
+        }
+
+        /* Хедер */
+        .header {
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(32, 35, 42, 0.95);
+            border-radius: 8px;
+            padding: 12px 20px;
+            margin-bottom: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #3a3f50;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00a2ff, #0055ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 22px;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #00a2ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Контейнер регистрации */
+        .registration-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(32, 35, 42, 0.95);
+            border-radius: 12px;
+            padding: 40px;
+            margin: 20px 0;
+            border: 1px solid #3a3f50;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+        }
+
+        .registration-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .registration-header h1 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .registration-header p {
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+
+        /* Форма */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #c0c0c0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(22, 24, 30, 0.8);
+            border: 2px solid #3a3f50;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00a2ff;
+            box-shadow: 0 0 0 2px rgba(0, 162, 255, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: #6c757d;
+        }
+
+        /* Индикатор силы пароля */
+        .password-strength {
+            margin-top: 8px;
+            height: 4px;
+            background: #3a3f50;
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .strength-bar {
+            height: 100%;
+            transition: width 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Дата рождения */
+        .birthday-selectors {
+            display: flex;
+            gap: 10px;
+        }
+
+        .birthday-select {
+            flex: 1;
+            padding: 12px;
+            background: rgba(22, 24, 30, 0.8);
+            border: 2px solid #3a3f50;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 16px;
+        }
+
+        /* Выбор пола */
+        .gender-selection {
+            display: flex;
+            gap: 15px;
+            margin-top: 10px;
+        }
+
+        .gender-option {
+            flex: 1;
+            padding: 12px;
+            background: rgba(22, 24, 30, 0.8);
+            border: 2px solid #3a3f50;
+            border-radius: 6px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .gender-option.selected {
+            border-color: #00a2ff;
+            background: rgba(0, 162, 255, 0.1);
+        }
+
+        /* Кнопка */
+        .btn {
+            background: linear-gradient(180deg, #00a2ff 0%, #007acc 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .btn:hover {
+            background: linear-gradient(180deg, #00b2ff 0%, #0088dd 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 162, 255, 0.3);
+        }
+
+        /* Уведомления */
+        .notification {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+        }
+
+        .notification.success {
+            background: rgba(46, 213, 115, 0.2);
+            border: 1px solid #2ed573;
+            color: #2ed573;
+        }
+
+        .notification.error {
+            background: rgba(255, 71, 87, 0.2);
+            border: 1px solid #ff4757;
+            color: #ff4757;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            padding: 20px;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .registration-container {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                padding: 15px;
+            }
+            
+            .birthday-selectors {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Хедер -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">MaxBlox</div>
+        </a>
+        <nav>
+            <a href="login.html" style="color: #00a2ff; text-decoration: none; font-weight: 500;">
+                <i class="fas fa-sign-in-alt"></i> Войти
+            </a>
+        </nav>
+    </header>
+
+    <!-- Уведомления -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Форма регистрации -->
+    <div class="registration-container">
+        <div class="registration-header">
+            <h1>Создайте аккаунт</h1>
+            <p>Присоединяйтесь к миллионам игроков в MaxBlox!</p>
+        </div>
+
+        <form id="registrationForm" class="form">
+            <div class="form-group">
+                <label class="form-label">Имя пользователя</label>
+                <input type="text" id="username" class="form-input" placeholder="Введите имя пользователя" required>
+                <i class="fas fa-user input-icon"></i>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Электронная почта</label>
+                <input type="email" id="email" class="form-input" placeholder="example@mail.com" required>
+                <i class="fas fa-envelope input-icon"></i>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Пароль</label>
+                <input type="password" id="password" class="form-input" placeholder="Создайте надежный пароль" required>
+                <i class="fas fa-lock input-icon"></i>
+                <div class="password-strength">
+                    <div id="strengthBar" class="strength-bar"></div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Подтвердите пароль</label>
+                <input type="password" id="confirmPassword" class="form-input" placeholder="Повторите пароль" required>
+                <i class="fas fa-lock input-icon"></i>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Дата рождения</label>
+                <div class="birthday-selectors">
+                    <select id="birthDay" class="birthday-select" required>
+                        <option value="">День</option>
+                    </select>
+                    <select id="birthMonth" class="birthday-select" required>
+                        <option value="">Месяц</option>
+                        <option value="1">Январь</option>
+                        <option value="2">Февраль</option>
+                        <option value="3">Март</option>
+                        <option value="4">Апрель</option>
+                        <option value="5">Май</option>
+                        <option value="6">Июнь</option>
+                        <option value="7">Июль</option>
+                        <option value="8">Август</option>
+                        <option value="9">Сентябрь</option>
+                        <option value="10">Октябрь</option>
+                        <option value="11">Ноябрь</option>
+                        <option value="12">Декабрь</option>
+                    </select>
+                    <select id="birthYear" class="birthday-select" required>
+                        <option value="">Год</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Пол</label>
+                <div class="gender-selection">
+                    <div class="gender-option" data-gender="male">
+                        <i class="fas fa-mars"></i><br>
+                        Мужской
+                    </div>
+                    <div class="gender-option" data-gender="female">
+                        <i class="fas fa-venus"></i><br>
+                        Женский
+                    </div>
+                </div>
+                <input type="hidden" id="gender" required>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">
+                    <input type="checkbox" id="agreeTerms" required style="margin-right: 8px;">
+                    Я согласен с <a href="#" style="color: #00a2ff;">Условиями использования</a>
+                </label>
+            </div>
+
+            <button type="submit" class="btn">
+                <i class="fas fa-user-plus"></i> Создать аккаунт
+            </button>
+        </form>
+
+        <div style="text-align: center; margin-top: 20px; padding-top: 20px; border-top: 1px solid #3a3f50;">
+            <p>Уже есть аккаунт? <a href="login.html" style="color: #00a2ff; font-weight: bold;">Войти</a></p>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 MaxBlox Corporation. Все права защищены.</p>
+    </footer>
+
+    <script>
+        // Инициализация при загрузке страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация даты рождения
+            initBirthDate();
+            
+            // Инициализация выбора пола
+            initGenderSelection();
+            
+            // Отслеживание силы пароля
+            const passwordInput = document.getElementById('password');
+            const strengthBar = document.getElementById('strengthBar');
+            
+            passwordInput.addEventListener('input', function() {
+                const password = this.value;
+                const strength = calculatePasswordStrength(password);
+                updateStrengthBar(strength);
+            });
+            
+            // Обработка формы регистрации
+            const registrationForm = document.getElementById('registrationForm');
+            registrationForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                if (validateForm()) {
+                    registerAccount();
+                }
+            });
+            
+            // Проверка пароля при вводе в поле подтверждения
+            document.getElementById('confirmPassword').addEventListener('input', function() {
+                const password = document.getElementById('password').value;
+                const confirmPassword = this.value;
+                
+                if (confirmPassword && password !== confirmPassword) {
+                    this.style.borderColor = '#ff4757';
+                } else {
+                    this.style.borderColor = '#3a3f50';
+                }
+            });
+        });
+
+        function initBirthDate() {
+            // Заполнение дней (1-31)
+            const daySelect = document.getElementById('birthDay');
+            for (let i = 1; i <= 31; i++) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                daySelect.appendChild(option);
+            }
+            
+            // Заполнение годов (текущий год - 100 лет)
+            const yearSelect = document.getElementById('birthYear');
+            const currentYear = new Date().getFullYear();
+            for (let i = currentYear; i >= currentYear - 100; i--) {
+                const option = document.createElement('option');
+                option.value = i;
+                option.textContent = i;
+                yearSelect.appendChild(option);
+            }
+        }
+
+        function initGenderSelection() {
+            const genderOptions = document.querySelectorAll('.gender-option');
+            const genderInput = document.getElementById('gender');
+            
+            genderOptions.forEach(option => {
+                option.addEventListener('click', function() {
+                    // Удаляем выбранный класс у всех
+                    genderOptions.forEach(opt => opt.classList.remove('selected'));
+                    // Добавляем выбранному
+                    this.classList.add('selected');
+                    // Сохраняем значение
+                    genderInput.value = this.dataset.gender;
+                });
+            });
+        }
+
+        function calculatePasswordStrength(password) {
+            let strength = 0;
+            
+            if (password.length >= 8) strength++;
+            if (password.length >= 12) strength++;
+            
+            if (/[a-z]/.test(password)) strength++;
+            if (/[A-Z]/.test(password)) strength++;
+            if (/[0-9]/.test(password)) strength++;
+            if (/[^A-Za-z0-9]/.test(password)) strength++;
+            
+            return Math.min(strength, 5);
+        }
+
+        function updateStrengthBar(strength) {
+            const bar = document.getElementById('strengthBar');
+            
+            // Сброс стилей
+            bar.style.width = '0%';
+            bar.style.backgroundColor = '';
+            
+            // Устанавливаем ширину и цвет
+            setTimeout(() => {
+                const percentage = (strength / 5) * 100;
+                bar.style.width = `${percentage}%`;
+                
+                if (strength <= 2) {
+                    bar.style.backgroundColor = '#ff4757';
+                } else if (strength <= 4) {
+                    bar.style.backgroundColor = '#ffa502';
+                } else {
+                    bar.style.backgroundColor = '#2ed573';
+                }
+            }, 10);
+        }
+
+        function validateForm() {
+            const username = document.getElementById('username').value.trim();
+            const email = document.getElementById('email').value.trim();
+            const password = document.getElementById('password').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const birthDay = document.getElementById('birthDay').value;
+            const birthMonth = document.getElementById('birthMonth').value;
+            const birthYear = document.getElementById('birthYear').value;
+            const gender = document.getElementById('gender').value;
+            const agreeTerms = document.getElementById('agreeTerms').checked;
+            
+            // Проверка имени пользователя
+            if (username.length < 3 || username.length > 20) {
+                showNotification('Имя пользователя должно быть от 3 до 20 символов', 'error');
+                return false;
+            }
+            
+            // Проверка email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Введите корректный email адрес', 'error');
+                return false;
+            }
+            
+            // Проверка пароля
+            if (password.length < 8) {
+                showNotification('Пароль должен содержать минимум 8 символов', 'error');
+                return false;
+            }
+            
+            if (password !== confirmPassword) {
+                showNotification('Пароли не совпадают', 'error');
+                return false;
+            }
+            
+            // Проверка даты рождения
+            if (!birthDay || !birthMonth || !birthYear) {
+                showNotification('Выберите дату рождения', 'error');
+                return false;
+            }
+            
+            // Проверка возраста (минимум 13 лет)
+            const birthDate = new Date(birthYear, birthMonth - 1, birthDay);
+            const today = new Date();
+            let age = today.getFullYear() - birthDate.getFullYear();
+            const monthDiff = today.getMonth() - birthDate.getMonth();
+            
+            if (monthDiff < 0 || (monthDiff === 0 && today.getDate() < birthDate.getDate())) {
+                age--;
+            }
+            
+            if (age < 13) {
+                showNotification('Для регистрации необходимо быть старше 13 лет', 'error');
+                return false;
+            }
+            
+            // Проверка пола
+            if (!gender) {
+                showNotification('Выберите свой пол', 'error');
+                return false;
+            }
+            
+            // Проверка согласия с условиями
+            if (!agreeTerms) {
+                showNotification('Необходимо согласиться с условиями использования', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function registerAccount() {
+            // Сбор данных формы
+            const userData = {
+                username: document.getElementById('username').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                password: document.getElementById('password').value,
+                confirmPassword: document.getElementById('confirmPassword').value,
+                gender: document.getElementById('gender').value,
+                birthDay: document.getElementById('birthDay').value,
+                birthMonth: document.getElementById('birthMonth').value,
+                birthYear: document.getElementById('birthYear').value
+            };
+            
+            // Проверка на пустые поля
+            for (let key in userData) {
+                if (!userData[key]) {
+                    showNotification('Заполните все поля', 'error');
+                    return;
+                }
+            }
+            
+            // Здесь будет AJAX запрос к серверу
+            // Временно показываем успешную регистрацию
+            showNotification('✅ Аккаунт успешно создан! Войдите в систему.', 'success');
+            
+            // Сброс формы
+            setTimeout(() => {
+                document.getElementById('registrationForm').reset();
+                document.querySelectorAll('.gender-option').forEach(opt => opt.classList.remove('selected'));
+                document.getElementById('gender').value = '';
+                document.getElementById('strengthBar').style.width = '0%';
+                
+                // Перенаправление на страницу входа
+                window.location.href = 'login.html';
+            }, 2000);
+            
+            // Для реальной регистрации раскомментируйте следующий код:
+            /*
+            fetch('http://localhost:8080/api/register', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(userData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showNotification(data.message, 'success');
+                    setTimeout(() => {
+                        window.location.href = 'login.html';
+                    }, 2000);
+                } else {
+                    showNotification(data.message, 'error');
+                }
+            })
+            .catch(error => {
+                showNotification('Ошибка соединения с сервером', 'error');
+                console.error('Error:', error);
+            });
+            */
+        }
+
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            // Автоматическое скрытие через 5 секунд
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>

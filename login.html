@@ -1,0 +1,1009 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MaxBlox - Вход</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: #e0e0e0;
+            padding: 20px;
+            position: relative;
+        }
+
+        /* Фоновые элементы игр */
+        .game-background {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+            opacity: 0.1;
+        }
+
+        .game-preview {
+            position: absolute;
+            width: 150px;
+            height: 100px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 10px;
+            animation: float 20s infinite linear;
+            opacity: 0.3;
+        }
+
+        .game-preview:nth-child(1) {
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+        }
+
+        .game-preview:nth-child(2) {
+            top: 30%;
+            right: 10%;
+            animation-delay: -5s;
+            background: linear-gradient(135deg, #f093fb, #f5576c);
+        }
+
+        .game-preview:nth-child(3) {
+            bottom: 20%;
+            left: 15%;
+            animation-delay: -10s;
+            background: linear-gradient(135deg, #4facfe, #00f2fe);
+        }
+
+        .game-preview:nth-child(4) {
+            bottom: 40%;
+            right: 20%;
+            animation-delay: -15s;
+            background: linear-gradient(135deg, #43e97b, #38f9d7);
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0) rotate(0deg);
+            }
+            100% {
+                transform: translateY(-1000px) rotate(720deg);
+            }
+        }
+
+        /* Хедер */
+        .header {
+            position: absolute;
+            top: 0;
+            width: 100%;
+            max-width: 1200px;
+            background: rgba(32, 35, 42, 0.95);
+            border-radius: 0 0 8px 8px;
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid #3a3f50;
+            border-top: none;
+            z-index: 10;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #00a2ff, #0055ff);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 22px;
+            color: white;
+        }
+
+        .logo-text {
+            font-size: 28px;
+            font-weight: 900;
+            background: linear-gradient(90deg, #00a2ff, #00ffaa);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Контейнер входа */
+        .login-container {
+            width: 100%;
+            max-width: 450px;
+            background: rgba(32, 35, 42, 0.95);
+            border-radius: 12px;
+            padding: 40px;
+            border: 1px solid #3a3f50;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+            margin-top: 60px;
+            position: relative;
+            z-index: 5;
+        }
+
+        .login-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .login-header h1 {
+            font-size: 32px;
+            color: #ffffff;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .login-header p {
+            color: #a0a0a0;
+            font-size: 16px;
+        }
+
+        /* Форма */
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .form-group {
+            position: relative;
+        }
+
+        .form-label {
+            display: block;
+            margin-bottom: 8px;
+            color: #c0c0c0;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 14px 16px;
+            background: rgba(22, 24, 30, 0.8);
+            border: 2px solid #3a3f50;
+            border-radius: 6px;
+            color: #ffffff;
+            font-size: 16px;
+            transition: all 0.3s;
+        }
+
+        .form-input:focus {
+            outline: none;
+            border-color: #00a2ff;
+            box-shadow: 0 0 0 2px rgba(0, 162, 255, 0.2);
+        }
+
+        .input-icon {
+            position: absolute;
+            right: 15px;
+            top: 40px;
+            color: #6c757d;
+        }
+
+        /* Запомнить меня */
+        .remember-me {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .remember-me input {
+            width: 18px;
+            height: 18px;
+        }
+
+        /* Кнопка */
+        .btn {
+            background: linear-gradient(180deg, #00a2ff 0%, #007acc 100%);
+            color: white;
+            border: none;
+            padding: 16px;
+            border-radius: 6px;
+            font-size: 18px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+            text-transform: uppercase;
+            width: 100%;
+        }
+
+        .btn:hover {
+            background: linear-gradient(180deg, #00b2ff 0%, #0088dd 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 162, 255, 0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        /* Ссылки */
+        .links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .links a {
+            color: #00a2ff;
+            text-decoration: none;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+
+        /* Уведомления */
+        .notification {
+            padding: 12px;
+            border-radius: 6px;
+            margin-bottom: 20px;
+            display: none;
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            z-index: 10;
+        }
+
+        .notification.success {
+            background: rgba(46, 213, 115, 0.2);
+            border: 1px solid #2ed573;
+            color: #2ed573;
+        }
+
+        .notification.error {
+            background: rgba(255, 71, 87, 0.2);
+            border: 1px solid #ff4757;
+            color: #ff4757;
+        }
+
+        .notification.info {
+            background: rgba(0, 162, 255, 0.2);
+            border: 1px solid #00a2ff;
+            color: #00a2ff;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Информация о недавней регистрации */
+        .recent-registration {
+            background: rgba(0, 162, 255, 0.1);
+            border: 1px solid rgba(0, 162, 255, 0.3);
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 10;
+            display: none;
+        }
+
+        .recent-registration p {
+            color: #00a2ff;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .recent-registration strong {
+            color: white;
+        }
+
+        /* Футер */
+        .footer {
+            margin-top: 40px;
+            text-align: center;
+            color: #6c757d;
+            font-size: 14px;
+            padding: 20px;
+            position: relative;
+            z-index: 5;
+        }
+
+        /* Анимация загрузки */
+        .loader {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid #3a3f50;
+            border-top: 3px solid #00a2ff;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Демо игры */
+        .demo-games {
+            display: none;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            animation: fadeIn 0.5s ease-out;
+        }
+
+        .demo-game-card {
+            background: rgba(40, 44, 52, 0.8);
+            border-radius: 8px;
+            padding: 15px;
+            border: 1px solid #3a3f50;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-align: center;
+        }
+
+        .demo-game-card:hover {
+            transform: translateY(-3px);
+            border-color: #00a2ff;
+            box-shadow: 0 5px 15px rgba(0, 162, 255, 0.2);
+        }
+
+        .demo-game-icon {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #00a2ff;
+        }
+
+        .demo-game-name {
+            font-size: 14px;
+            color: white;
+            font-weight: 500;
+        }
+
+        /* Кнопка показать игры */
+        .show-games-btn {
+            margin-top: 15px;
+            background: transparent;
+            border: 1px solid #3a3f50;
+            color: #00a2ff;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            font-size: 14px;
+        }
+
+        .show-games-btn:hover {
+            background: rgba(0, 162, 255, 0.1);
+            border-color: #00a2ff;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Окно игры */
+        .game-window {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 90%;
+            max-width: 800px;
+            height: 500px;
+            background: rgba(20, 22, 30, 0.95);
+            border-radius: 15px;
+            border: 3px solid #00a2ff;
+            z-index: 1000;
+            box-shadow: 0 0 50px rgba(0, 162, 255, 0.5);
+            overflow: hidden;
+            display: none;
+        }
+
+        .game-header {
+            background: linear-gradient(90deg, #00a2ff, #0055ff);
+            color: white;
+            padding: 15px 20px;
+            font-size: 20px;
+            font-weight: bold;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .game-content {
+            padding: 30px;
+            height: calc(100% - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.3);
+        }
+
+        .game-icon {
+            font-size: 100px;
+            margin-bottom: 30px;
+            color: #00a2ff;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            .login-container {
+                padding: 30px 20px;
+            }
+            
+            .header {
+                position: relative;
+                margin-bottom: 20px;
+                border-radius: 8px;
+                border-top: 1px solid #3a3f50;
+            }
+            
+            .links {
+                flex-direction: column;
+                gap: 10px;
+                align-items: center;
+            }
+            
+            .demo-games {
+                grid-template-columns: 1fr;
+            }
+            
+            .game-window {
+                width: 95%;
+                height: 400px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Фоновые элементы игр -->
+    <div class="game-background">
+        <div class="game-preview"></div>
+        <div class="game-preview"></div>
+        <div class="game-preview"></div>
+        <div class="game-preview"></div>
+    </div>
+
+    <!-- Хедер -->
+    <header class="header">
+        <a href="index.html" class="logo">
+            <div class="logo-icon">M</div>
+            <div class="logo-text">MaxBlox</div>
+        </a>
+        <nav>
+            <a href="register.html" style="color: #00a2ff; text-decoration: none; font-weight: 500;">
+                <i class="fas fa-user-plus"></i> Регистрация
+            </a>
+        </nav>
+    </header>
+
+    <!-- Уведомления -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Информация о недавней регистрации -->
+    <div id="recentRegistration" class="recent-registration">
+        <p>🎉 Недавно зарегистрирован: <strong id="recentUsername">Пользователь</strong></p>
+        <p style="margin-top: 5px; font-size: 12px; color: #a0a0a0;">Войдите, чтобы начать играть!</p>
+    </div>
+
+    <!-- Контейнер входа -->
+    <div class="login-container">
+        <div class="login-header">
+            <h1>Вход в MaxBlox</h1>
+            <p>Войдите в свой аккаунт для продолжения</p>
+        </div>
+
+        <form id="loginForm" class="form">
+            <div class="form-group">
+                <label class="form-label">Имя пользователя</label>
+                <input type="text" id="username" class="form-input" placeholder="Введите имя пользователя" required>
+                <i class="fas fa-user input-icon"></i>
+            </div>
+
+            <div class="form-group">
+                <label class="form-label">Пароль</label>
+                <input type="password" id="password" class="form-input" placeholder="Введите пароль" required>
+                <i class="fas fa-lock input-icon"></i>
+            </div>
+
+            <div class="remember-me">
+                <input type="checkbox" id="remember">
+                <label for="remember">Запомнить меня</label>
+            </div>
+
+            <button type="submit" class="btn" id="loginButton">
+                <span id="buttonText">Войти в игру</span>
+                <div class="loader" id="loader"></div>
+            </button>
+
+            <!-- Кнопка показать демо игры -->
+            <button type="button" class="show-games-btn" id="showGamesBtn">
+                <i class="fas fa-gamepad"></i> Попробовать демо игры
+            </button>
+
+            <!-- Демо игры -->
+            <div class="demo-games" id="demoGames">
+                <div class="demo-game-card" data-game="Adventure World">
+                    <div class="demo-game-icon">
+                        <i class="fas fa-dragon"></i>
+                    </div>
+                    <div class="demo-game-name">Adventure World</div>
+                </div>
+                <div class="demo-game-card" data-game="Racing Extreme">
+                    <div class="demo-game-icon">
+                        <i class="fas fa-racing-flag"></i>
+                    </div>
+                    <div class="demo-game-name">Racing Extreme</div>
+                </div>
+                <div class="demo-game-card" data-game="Tower Defense">
+                    <div class="demo-game-icon">
+                        <i class="fas fa-fort-awesome"></i>
+                    </div>
+                    <div class="demo-game-name">Tower Defense</div>
+                </div>
+                <div class="demo-game-card" data-game="Fashion Show">
+                    <div class="demo-game-icon">
+                        <i class="fas fa-tshirt"></i>
+                    </div>
+                    <div class="demo-game-name">Fashion Show</div>
+                </div>
+            </div>
+
+            <div class="links">
+                <a href="#" onclick="showForgotPassword()">Забыли пароль?</a>
+                <a href="register.html">Создать новый аккаунт</a>
+            </div>
+        </form>
+
+        <!-- Демо аккаунты -->
+        <div style="margin-top: 25px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 8px;">
+            <p style="color: #a0a0a0; font-size: 14px; margin-bottom: 10px; text-align: center;">
+                <i class="fas fa-lightbulb"></i> Демо аккаунты для тестирования:
+            </p>
+            <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px;">
+                <div style="display: flex; justify-content: space-between; padding: 5px;">
+                    <span style="color: #00a2ff;">Имя:</span>
+                    <span>demo_user</span>
+                    <span style="color: #00a2ff;">Пароль:</span>
+                    <span>demo123</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px;">
+                    <span style="color: #00a2ff;">Имя:</span>
+                    <span>test</span>
+                    <span style="color: #00a2ff;">Пароль:</span>
+                    <span>test123</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; padding: 5px;">
+                    <span style="color: #00a2ff;">Имя:</span>
+                    <span>admin</span>
+                    <span style="color: #00a2ff;">Пароль:</span>
+                    <span>admin123</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Окно игры -->
+    <div id="gameWindow" class="game-window">
+        <div class="game-header">
+            <div id="gameTitle">Игра</div>
+            <button id="closeGame" style="background: transparent; border: none; color: white; font-size: 24px; cursor: pointer;">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="game-content" id="gameContent">
+            <!-- Содержимое будет добавлено через JS -->
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>© 2024 MaxBlox Corporation. Все права защищены.</p>
+        <p style="margin-top: 5px; font-size: 12px;">
+            <span id="playersOnline">🔴 Загрузка...</span>
+        </p>
+    </footer>
+
+    <script>
+        // Основные переменные
+        let currentGame = null;
+        
+        // Загрузка страницы
+        document.addEventListener('DOMContentLoaded', function() {
+            // Инициализация элементов
+            initPage();
+            
+            // Обновляем онлайн игроков
+            updateOnlinePlayers();
+            
+            // Проверяем недавнюю регистрацию
+            checkRecentRegistration();
+        });
+        
+        // Инициализация страницы
+        function initPage() {
+            // Получаем элементы
+            const loginForm = document.getElementById('loginForm');
+            const loginButton = document.getElementById('loginButton');
+            const showGamesBtn = document.getElementById('showGamesBtn');
+            const demoGames = document.getElementById('demoGames');
+            const gameWindow = document.getElementById('gameWindow');
+            const closeGameBtn = document.getElementById('closeGame');
+            
+            // Загружаем сохраненные данные
+            loadSavedCredentials();
+            
+            // Обработка формы входа
+            loginForm.addEventListener('submit', handleLogin);
+            
+            // Обработка кнопки показа игр
+            showGamesBtn.addEventListener('click', function() {
+                if (demoGames.style.display === 'grid') {
+                    demoGames.style.display = 'none';
+                    showGamesBtn.innerHTML = '<i class="fas fa-gamepad"></i> Попробовать демо игры';
+                } else {
+                    demoGames.style.display = 'grid';
+                    showGamesBtn.innerHTML = '<i class="fas fa-times"></i> Скрыть игры';
+                }
+            });
+            
+            // Обработка клика по играм
+            document.querySelectorAll('.demo-game-card').forEach(card => {
+                card.addEventListener('click', function() {
+                    const gameName = this.getAttribute('data-game');
+                    openGameWindow(gameName);
+                });
+            });
+            
+            // Закрытие окна игры
+            closeGameBtn.addEventListener('click', function() {
+                gameWindow.style.display = 'none';
+                currentGame = null;
+            });
+            
+            // Быстрый вход двойным кликом
+            document.getElementById('username').addEventListener('dblclick', function() {
+                if (this.value === '') {
+                    this.value = 'demo_user';
+                    document.getElementById('password').value = 'demo123';
+                    showNotification('Демо данные загружены. Нажмите "Войти в игру"', 'info');
+                }
+            });
+        }
+        
+        // Загрузка сохраненных данных
+        function loadSavedCredentials() {
+            const savedUsername = localStorage.getItem('maxblox_login_username');
+            const savedPassword = localStorage.getItem('maxblox_login_password');
+            const rememberMe = localStorage.getItem('maxblox_remember') === 'true';
+            
+            if (savedUsername && rememberMe) {
+                document.getElementById('username').value = savedUsername;
+                document.getElementById('password').value = savedPassword || '';
+                document.getElementById('remember').checked = true;
+            }
+        }
+        
+        // Проверка недавней регистрации
+        function checkRecentRegistration() {
+            const registeredUsername = localStorage.getItem('maxblox_registered_username');
+            if (registeredUsername) {
+                document.getElementById('recentUsername').textContent = registeredUsername;
+                document.getElementById('recentRegistration').style.display = 'block';
+                document.getElementById('username').value = registeredUsername;
+                localStorage.removeItem('maxblox_registered_username');
+            }
+            
+            // Проверка URL параметров
+            const urlParams = new URLSearchParams(window.location.search);
+            const regUsername = urlParams.get('username');
+            if (regUsername) {
+                document.getElementById('username').value = regUsername;
+                showNotification(`Добро пожаловать, ${regUsername}! Теперь войдите в аккаунт.`, 'success');
+            }
+        }
+        
+        // Обновление количества игроков онлайн
+        function updateOnlinePlayers() {
+            const onlineCount = Math.floor(Math.random() * 1000000) + 1500000;
+            const formattedCount = onlineCount.toLocaleString();
+            document.getElementById('playersOnline').innerHTML = `🟢 <span style="color: #00ffaa">${formattedCount}</span> игроков онлайн`;
+            
+            // Обновляем каждые 30 секунд
+            setTimeout(updateOnlinePlayers, 30000);
+        }
+        
+        // Обработка входа
+        async function handleLogin(e) {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value.trim();
+            const password = document.getElementById('password').value;
+            const remember = document.getElementById('remember').checked;
+            
+            // Валидация
+            if (!username || !password) {
+                showNotification('Заполните все поля', 'error');
+                return;
+            }
+            
+            if (username.length < 3) {
+                showNotification('Имя пользователя должно быть не менее 3 символов', 'error');
+                return;
+            }
+            
+            // Показываем загрузку
+            const buttonText = document.getElementById('buttonText');
+            const loader = document.getElementById('loader');
+            const loginButton = document.getElementById('loginButton');
+            
+            buttonText.style.display = 'none';
+            loader.style.display = 'block';
+            loginButton.disabled = true;
+            
+            try {
+                // Имитация запроса к серверу
+                const loginResult = await simulateLogin(username, password);
+                
+                // Сохраняем данные
+                if (remember) {
+                    localStorage.setItem('maxblox_login_username', username);
+                    localStorage.setItem('maxblox_login_password', password);
+                    localStorage.setItem('maxblox_remember', 'true');
+                } else {
+                    localStorage.removeItem('maxblox_login_username');
+                    localStorage.removeItem('maxblox_login_password');
+                    localStorage.removeItem('maxblox_remember');
+                }
+                
+                // Сохраняем информацию о входе
+                saveUserData(username, loginResult);
+                saveLoginHistory(username);
+                
+                showNotification(`✅ Добро пожаловать, ${username}!`, 'success');
+                
+                // Перенаправление через 1 секунду
+                setTimeout(() => {
+                    window.location.href = 'MaxBlox.html';
+                }, 1000);
+                
+            } catch (error) {
+                showNotification(error.message, 'error');
+                
+                // Скрываем загрузку
+                buttonText.style.display = 'block';
+                loader.style.display = 'none';
+                loginButton.disabled = false;
+            }
+        }
+        
+        // Имитация входа
+        async function simulateLogin(username, password) {
+            return new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    // Проверяем существующие аккаунты
+                    const savedUserData = localStorage.getItem('maxblox_user_' + username);
+                    
+                    if (savedUserData) {
+                        const user = JSON.parse(savedUserData);
+                        if (user.password === password) {
+                            resolve({
+                                success: true,
+                                displayName: user.displayName || username,
+                                avatar: user.avatar || 'default',
+                                robux: user.robux || 1000
+                            });
+                        } else {
+                            reject(new Error('Неверный пароль'));
+                        }
+                    } else {
+                        // Проверяем демо аккаунты
+                        const demoAccounts = {
+                            'demo_user': 'demo123',
+                            'test': 'test123',
+                            'admin': 'admin123'
+                        };
+                        
+                        if (demoAccounts[username] && demoAccounts[username] === password) {
+                            resolve({
+                                success: true,
+                                displayName: username,
+                                avatar: 'demo',
+                                robux: 2500
+                            });
+                        } else {
+                            reject(new Error('Пользователь не найден. Зарегистрируйтесь сначала'));
+                        }
+                    }
+                }, 1500);
+            });
+        }
+        
+        // Сохранение данных пользователя
+        function saveUserData(username, loginResult) {
+            localStorage.setItem('maxblox_logged_in', 'true');
+            localStorage.setItem('maxblox_current_user', username);
+            localStorage.setItem('maxblox_user_displayname', loginResult.displayName || username);
+            
+            const userData = {
+                username: username,
+                displayName: loginResult.displayName || username,
+                avatar: loginResult.avatar || 'default',
+                joinDate: new Date().toISOString(),
+                robux: loginResult.robux || 1000,
+                lastLogin: new Date().toISOString()
+            };
+            
+            localStorage.setItem('maxblox_user_data', JSON.stringify(userData));
+        }
+        
+        // Сохранение истории входа
+        function saveLoginHistory(username) {
+            const loginHistory = JSON.parse(localStorage.getItem('maxblox_login_history') || '[]');
+            const loginRecord = {
+                username: username,
+                timestamp: new Date().toISOString(),
+                ip: '127.0.0.1'
+            };
+            
+            loginHistory.unshift(loginRecord);
+            localStorage.setItem('maxblox_login_history', JSON.stringify(loginHistory.slice(0, 10)));
+        }
+        
+        // Открытие окна игры
+        function openGameWindow(gameName) {
+            currentGame = gameName;
+            const gameWindow = document.getElementById('gameWindow');
+            const gameTitle = document.getElementById('gameTitle');
+            const gameContent = document.getElementById('gameContent');
+            
+            // Устанавливаем заголовок
+            gameTitle.textContent = `${gameName} - Демо версия`;
+            
+            // Определяем иконку игры
+            const gameIcons = {
+                'Adventure World': 'fas fa-dragon',
+                'Racing Extreme': 'fas fa-racing-flag',
+                'Tower Defense': 'fas fa-fort-awesome',
+                'Fashion Show': 'fas fa-tshirt'
+            };
+            
+            // Определяем описание игры
+            const gameDescriptions = {
+                'Adventure World': 'Отправляйтесь в захватывающее приключение по фэнтезийному миру!',
+                'Racing Extreme': 'Участвуйте в экстремальных гонках на самых быстрых машинах!',
+                'Tower Defense': 'Защищайте свою базу от волн противников с помощью башен!',
+                'Fashion Show': 'Создавайте стильные образы и побеждайте в модных показах!'
+            };
+            
+            // Создаем контент игры
+            gameContent.innerHTML = `
+                <div class="game-icon">
+                    <i class="${gameIcons[gameName] || 'fas fa-gamepad'}"></i>
+                </div>
+                <div style="color: white; font-size: 18px; margin-bottom: 20px;">
+                    ${gameDescriptions[gameName] || 'Увлекательная игра ждет вас!'}
+                </div>
+                <button onclick="playAsGuest('${gameName}')" style="
+                    background: linear-gradient(180deg, #00a2ff 0%, #007acc 100%);
+                    color: white;
+                    border: none;
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-top: 20px;
+                    transition: all 0.3s;
+                ">
+                    <i class="fas fa-play"></i> Играть как гость
+                </button>
+                <button onclick="loginForFullGame()" style="
+                    background: transparent;
+                    border: 2px solid #00a2ff;
+                    color: #00a2ff;
+                    padding: 15px 40px;
+                    border-radius: 8px;
+                    font-size: 18px;
+                    font-weight: bold;
+                    cursor: pointer;
+                    margin-top: 15px;
+                    transition: all 0.3s;
+                ">
+                    <i class="fas fa-sign-in-alt"></i> Войти для полной версии
+                </button>
+            `;
+            
+            // Показываем окно
+            gameWindow.style.display = 'block';
+        }
+        
+        // Играть как гость
+        function playAsGuest(gameName) {
+            showNotification(`🎮 Игра "${gameName}" запущена в демо-режиме!`, 'success');
+            localStorage.setItem('maxblox_played_demo_game', gameName);
+            document.getElementById('gameWindow').style.display = 'none';
+            currentGame = null;
+            
+            // Сохраняем статистику демо-игры
+            saveDemoGameStats(gameName);
+        }
+        
+        // Войти для полной игры
+        function loginForFullGame() {
+            document.getElementById('gameWindow').style.display = 'none';
+            document.getElementById('username').focus();
+            showNotification('Пожалуйста, войдите в аккаунт для доступа к полной версии игры', 'info');
+        }
+        
+        // Сохранение статистики демо-игры
+        function saveDemoGameStats(gameName) {
+            const demoStats = JSON.parse(localStorage.getItem('maxblox_demo_stats') || '{}');
+            
+            if (!demoStats[gameName]) {
+                demoStats[gameName] = 0;
+            }
+            
+            demoStats[gameName]++;
+            localStorage.setItem('maxblox_demo_stats', JSON.stringify(demoStats));
+        }
+        
+        // Восстановление пароля
+        function showForgotPassword() {
+            const email = prompt('Введите email для восстановления пароля:');
+            if (email) {
+                showNotification(`Инструкции по восстановлению пароля отправлены на ${email}`, 'info');
+            }
+        }
+        
+        // Показать уведомление
+        function showNotification(message, type) {
+            const notification = document.getElementById('notification');
+            
+            notification.textContent = message;
+            notification.className = `notification ${type}`;
+            notification.style.display = 'block';
+            
+            // Автоматическое скрытие
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 5000);
+        }
+    </script>
+</body>
+</html>
