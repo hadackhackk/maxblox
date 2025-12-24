@@ -1,2 +1,2 @@
-# maxblox
-Хммм, я гений!
+# MaxBlox
+Аналог Roblox!
